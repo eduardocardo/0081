@@ -30,7 +30,7 @@ public class InputReader
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-
-        return inputLine;
+        String [] temp = inputLine.split(" ");  //obtenemos un array de string que almacenamos
+        return temp[0];    //devolvemos el primer valor de ese array
     }
 }
