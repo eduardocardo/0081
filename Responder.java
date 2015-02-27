@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -41,17 +43,25 @@ public class Responder
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse(String clave)
+    public String generateResponse(HashSet<String> clave)
     {
         String contestacion;
-        if(otrasRespuestas.containsKey(clave))    //se comprueba si el parametro introducido corresponde con alguna key del mapa
+        Iterator<String> it= clave.iterator();
+        String palabra = "";          //variable que almacena los valores String del HanhSet
+        while(it.hasNext())      //recorremos la coleccion
         {
-            contestacion = otrasRespuestas.get(clave);       //se almacena en la variable el valor asociado a esa key
+             palabra = it.next();   //almacenamos en la variable un valor de la coleccion
+            
         }
-        else
-        {
-            contestacion = respuesta.get(rnd.nextInt(5));    //se genera una respuesta aleatoria de la lista existente
-        }
+        if(otrasRespuestas.containsKey(palabra))   //si esa variable coincide con una key del HashMap
+            {
+                contestacion = otrasRespuestas.get(palabra);    //almacenamos el valor correspondiente a esa key
+            }
+            else
+            {
+                contestacion = respuesta.get(rnd.nextInt(5));   //guarda una respuesta aleatoria de las disponibles
+            }
+        
         return contestacion;
     }
 }
